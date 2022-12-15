@@ -10,7 +10,7 @@ class Trainer:
         self,
         diffusion: Diffusion,
         model: nn.Module,
-        train_iter, # iterable that yields (x, y)
+        train_iter,  # iterable that yields (x, y)
         lr: float,
         weight_decay: float,
         steps: int,

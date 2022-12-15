@@ -9,11 +9,12 @@ from trainer.trainer import Trainer
 from configs.train_mnist_config import TrainMnistConfig
 from configs.dataset_mnist_config import DatasetMnistConfig
 from utils.beta_schedule import get_named_beta_schedule
-from utils.utils import InfiniteDataLoader, sample_synthetic, show_images
+from utils.utils import InfiniteDataLoader, sample_synthetic, show_images, set_random_seed
 import matplotlib.pyplot as plt
 
 
 def main(name):
+    set_random_seed(3407)
     scheduler = 'sigmoid'
     train_config = TrainMnistConfig
     datset_config = DatasetMnistConfig
