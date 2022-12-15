@@ -43,9 +43,10 @@ def main(name):
     plt.xlabel('steps', fontsize=15)
     plt.ylabel('L simple', fontsize=15)
     plt.grid()
-    plt.savefig(f'losses{name}.png')
+    plt.savefig(f'losses/{name}.png')
     plt.show()
-    torch.save(model_mnist.state_dict(), f'weights{name}.pth.tar')
+    torch.save({'model': model_mnist.state_dict(), 'optimizer': trainer_mnist.optimizer.state_dict()},
+               f'weights/{name}.pth.tar')
 
     Xs, ys = sample_synthetic(
         diffusion_mnist,
@@ -55,7 +56,7 @@ def main(name):
         shape=(1, 28, 28),
         y_dist=[0.1 for _ in range(10)]
     )
-    show_images(Xs, ys, f'generated{name}')
+    show_images(Xs, ys, f'generated_examples/{name}')
 
 
 if __name__ == '__main__':
@@ -63,4 +64,4 @@ if __name__ == '__main__':
     parser.add_argument(
         "--name", type=str, default='name_me_plz', help="name of run")
     args = parser.parse_args()
-    main(args.dataset)
+    main(args.name)

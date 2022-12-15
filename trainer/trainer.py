@@ -71,8 +71,9 @@ class Trainer:
             self._anneal_lr(step)
 
             curr_count += len(x)
-            curr_loss_gauss += batch_loss.item() * len(x)
-            all_loses += [batch_loss.item()]
+            loss = batch_loss.item()
+            curr_loss_gauss += loss * len(x)
+            all_loses += [loss]
 
             if (step + 1) % self.log_every == 0:
                 gloss = np.around(curr_loss_gauss / curr_count, 4)

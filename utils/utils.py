@@ -56,7 +56,7 @@ def show_images(images, ys, title=""):
                 plt.tick_params(bottom = False, labelbottom=False)
                 idx += 1
     fig.suptitle(title, fontsize=30)
-    plt.savefig(title + '.png')
+    plt.savefig(f'{title}.png')
     # Showing the figure
     plt.show()
 
