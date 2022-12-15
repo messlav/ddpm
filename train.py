@@ -1,6 +1,7 @@
 import torch
 from torchvision.datasets.mnist import MNIST
 from argparse import ArgumentParser
+import os
 
 from model.diffusion import Diffusion
 from model.simple_unet import MyUNet
@@ -16,6 +17,10 @@ def main(name):
     scheduler = 'sigmoid'
     train_config = TrainMnistConfig
     datset_config = DatasetMnistConfig
+
+    os.makedirs('losses', exist_ok=True)
+    os.makedirs('weights', exist_ok=True)
+    os.makedirs('generated_examples', exist_ok=True)
 
     dataset = MNIST("./datasets", download=True, train=True, transform=datset_config.train_transforms)
     loader = InfiniteDataLoader(dataset, batch_size=512, shuffle=True,
