@@ -26,12 +26,19 @@ Batch size = 512, AdamW optimizer without scheduler, sigmoid beta schedule, weig
 
 I conducted three experiments. The first experiment used a learning rate = 1e-3 and 10.000 steps:
 
+![alt text](https://github.com/messlav/ddpm/blob/main/losses/steps_10k.png)
+![alt text](https://github.com/messlav/ddpm/blob/main/generated_examples/steps_10k.png)
 
 Second one with learning rate = 1e-5 and 20.000 steps:
 
+![alt text](https://github.com/messlav/ddpm/blob/main/losses/steps_20k_lr_1e5.png)
+![alt text](https://github.com/messlav/ddpm/blob/main/generated_examples/steps_20k_lr_1e5.png)
 
 That was bad idea, therefore, I decided to decrease batch size to 128 and
 set learning rate to 1e-3 with 10.000 steps:
+
+![alt text](https://github.com/messlav/ddpm/blob/main/losses/steps_10k_lr_1e3.png)
+![alt text](https://github.com/messlav/ddpm/blob/main/generated_examples/steps_10k_lr_1e3.png)
 
 MNIST is not a popular dataset for such powerful models like DPPM, herefore, there are not many examples
 of generated images on the internet. Furthermore, the generated images do not look very good, possibly because 
