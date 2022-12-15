@@ -1,4 +1,6 @@
+import torch
 from torchvision.datasets.mnist import MNIST
+from argparse import ArgumentParser
 
 from model.diffusion import Diffusion
 from model.simple_unet import MyUNet
@@ -10,7 +12,7 @@ from utils.utils import InfiniteDataLoader, sample_synthetic, show_images
 import matplotlib.pyplot as plt
 
 
-def main():
+def main(name):
     scheduler = 'sigmoid'
     train_config = TrainMnistConfig
     datset_config = DatasetMnistConfig
@@ -38,17 +40,27 @@ def main():
     )
     losses = trainer_mnist.run_loop()
     plt.plot(losses)
+    plt.xlabel('steps', fontsize=15)
+    plt.ylabel('L simple', fontsize=15)
+    plt.grid()
+    plt.savefig(f'losses{name}.png')
     plt.show()
-    # Xs, ys = sample_synthetic(
-    #     diffusion_mnist,
-    #     model_mnist,
-    #     num_samples=16,
-    #     batch=16,
-    #     shape=(1, 28, 28),
-    #     y_dist=[0.1 for _ in range(10)]
-    # )
-    # show_images(Xs, ys)
+    torch.save(model_mnist.state_dict(), f'weights{name}.pth.tar')
+
+    Xs, ys = sample_synthetic(
+        diffusion_mnist,
+        model_mnist,
+        num_samples=16,
+        batch=16,
+        shape=(1, 28, 28),
+        y_dist=[0.1 for _ in range(10)]
+    )
+    show_images(Xs, ys, f'generated{name}')
 
 
 if __name__ == '__main__':
-    main()
+    parser = ArgumentParser()
+    parser.add_argument(
+        "--name", type=str, default='name_me_plz', help="name of run")
+    args = parser.parse_args()
+    main(args.dataset)
