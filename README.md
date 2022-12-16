@@ -26,6 +26,8 @@ Batch size = 512, AdamW optimizer without scheduler, sigmoid beta schedule, weig
 
 I conducted three experiments. The first experiment used a learning rate = 1e-3 and 10.000 steps:
 
+With dark theme GitHub the titles of images are closely invisible :))
+
 ![alt text](https://github.com/messlav/ddpm/blob/main/losses/steps_10k.png)
 ![alt text](https://github.com/messlav/ddpm/blob/main/generated_examples/steps_10k.png)
 
